@@ -234,6 +234,10 @@ Alias /nominatim /srv/nominatim/nominatim-project/website
 
 EOFAPACHECONF
 
+**#upto here**
+
+
+
 
 **#open postgres user**
 
