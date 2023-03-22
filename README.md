@@ -1,10 +1,10 @@
 # Nominatim-Server-on-Ubuntu
-#Ubuntu must be updated to 22.04
+**#Ubuntu must be updated to 22.04**
 
 #userName should be replaced by userprofile
 
 #Below code are for installing required packages
-#Run these commands in terminal
+**#Run these commands in terminal**
 
 sudo apt install -y python3-behave
 sudo apt install -y php-codesniffer
@@ -33,30 +33,30 @@ sudo apt install -y build-essential cmake g++ libboost-dev libboost-system-dev \
 
 
 
-#run below command for Creating a new system user named "nominatim" with a home directory of "/srv/nominatim"
+**#run below command for Creating a new system user named "nominatim" with a home directory of "/srv/nominatim"**
 sudo useradd -d /srv/nominatim -s /bin/bash -m nominatim
 
 
 
-#run below command for Setting environment variables for the username and home directory of the nominatim user.
+**#run below command for Setting environment variables for the username and home directory of the nominatim user.**
 export USERNAME=nominatim
 export USERHOME=/srv/nominatim
 
 
 
-#open the sudoers for configuration
+**#open the sudoers for configuration**
 visudo
 
 
 
-#Add these entries to the sudoers for granting various privileges
+**#Add these entries to the sudoers for granting various privileges**
 %userName ALL=(ALL) ALL
 %nominatim ALL=(ALL)  ALL
 %postgres ALL=(ALL)  ALL
 
 
 
-#copy Paste the code from here
+**#copy Paste the code from here**
 sudo chmod a+x $USERHOME
 sudo setfacl -R -m u:postgres:rwx /srv/nominatim/
 sudo systemctl restart postgresql
@@ -95,19 +95,19 @@ wget https://www.nominatim.org/data/wikimedia-importance.sql.gz
 
 wget https://download.geofabrik.de/asia/india-latest.osm.pbf
 
-#upto here
+**#upto here**
 
 
 
-#open postgres user
+**#open postgres user**
 sudo -u postgres -i
 
 
-#open postgresql.conf file and make some updates
+**#open postgresql.conf file and make some updates**
 nano /etc/postgresql/14/main/postgresql.conf
 
 
-#make these changes in the file
+**#make these changes in the file**
 listen_addresses = 'localhost'
 shared_buffers = 2GB
 maintenance_work_mem = 10GB
@@ -122,7 +122,7 @@ checkpoint_completion_target = 0.9
 
 
 
-#copy paste below command from here
+**#copy paste below command from here**
 su userName
 sudo -i
 sudo systemctl restart postgresql
@@ -149,10 +149,10 @@ Alias /nominatim /srv/nominatim/nominatim-project/website
 EOFAPACHECONF
 
 
-#open postgres user
+**#open postgres user**
 sudo -u postgres -i
 
-#run these following command in postgres user
+**#run these following command in postgres user**
 a2enconf nominatim
 systemctl restart apache2
 systemctl status apache2
@@ -160,6 +160,6 @@ systemctl restart postgresql
 nominatim serve
 
 
-#open browser and check the server running properly 
+**#open browser and check the server running properly** 
 run-: localhost/nominatim => OK
 localhost/nominatim/reverse.php?format=json&lat=27.1750090510034&lon=78.04209025
