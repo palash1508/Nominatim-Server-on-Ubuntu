@@ -9,37 +9,21 @@
 **#Run these commands in terminal**
 
 sudo apt install -y python3-behave
-
 sudo apt install -y php-codesniffer
-
 sudo apt install -y phpunit
-
 sudo apt install -y pylint
-
 sudo python38 -m pip install -y python-dotenv
-
 sudo apt install -y osm2pgsql
-
 sudo apt  install -y cmake
-
 sudo snap install -y cmake 
-
 sudo apt install -y python3-pip
-
 sudo apt install -y acl
-
 sudo pip install -U pytest
-
 sudo apt install -y php-cgi unzip recode
-
 sudo apt install -y apache2 libapache2-mod-php
-
 sudo apt install -y net-tools
-
 sudo apt-get install -y osmctools
-
 sudo apt install -y php-cgi
-
 sudo apt install -y build-essential cmake g++ libboost-dev libboost-system-dev \
                     libboost-filesystem-dev libexpat1-dev zlib1g-dev \
                     libbz2-dev libpq-dev liblua5.3-dev lua5.3 \
