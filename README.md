@@ -74,7 +74,9 @@ visudo
 **#Add these entries to the sudoers for granting various privileges**
 
 %userName ALL=(ALL) ALL
+
 %nominatim ALL=(ALL)  ALL
+
 %postgres ALL=(ALL)  ALL
 
 
