@@ -34,22 +34,26 @@ sudo apt install -y build-essential cmake g++ libboost-dev libboost-system-dev \
 
 
 **#run below command for Creating a new system user named "nominatim" with a home directory of "/srv/nominatim"**
+
 sudo useradd -d /srv/nominatim -s /bin/bash -m nominatim
 
 
 
 **#run below command for Setting environment variables for the username and home directory of the nominatim user.**
+
 export USERNAME=nominatim
 export USERHOME=/srv/nominatim
 
 
 
 **#open the sudoers for configuration**
+
 visudo
 
 
 
 **#Add these entries to the sudoers for granting various privileges**
+
 %userName ALL=(ALL) ALL
 %nominatim ALL=(ALL)  ALL
 %postgres ALL=(ALL)  ALL
@@ -57,6 +61,7 @@ visudo
 
 
 **#copy Paste the code from here**
+
 sudo chmod a+x $USERHOME
 sudo setfacl -R -m u:postgres:rwx /srv/nominatim/
 sudo systemctl restart postgresql
@@ -100,14 +105,17 @@ wget https://download.geofabrik.de/asia/india-latest.osm.pbf
 
 
 **#open postgres user**
+
 sudo -u postgres -i
 
 
 **#open postgresql.conf file and make some updates**
+
 nano /etc/postgresql/14/main/postgresql.conf
 
 
 **#make these changes in the file**
+
 listen_addresses = 'localhost'
 shared_buffers = 2GB
 maintenance_work_mem = 10GB
@@ -123,6 +131,7 @@ checkpoint_completion_target = 0.9
 
 
 **#copy paste below command from here**
+
 su userName
 sudo -i
 sudo systemctl restart postgresql
@@ -150,9 +159,11 @@ EOFAPACHECONF
 
 
 **#open postgres user**
+
 sudo -u postgres -i
 
 **#run these following command in postgres user**
+
 a2enconf nominatim
 systemctl restart apache2
 systemctl status apache2
@@ -161,5 +172,6 @@ nominatim serve
 
 
 **#open browser and check the server running properly** 
+
 run-: localhost/nominatim => OK
 localhost/nominatim/reverse.php?format=json&lat=27.1750090510034&lon=78.04209025
