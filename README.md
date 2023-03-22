@@ -2,7 +2,7 @@
 
 **#Ubuntu must be updated to 22.04**
 
-**userName should be replaced by userprofile**
+***%userName should be replaced by userprofile%***
 
 **#Below code are for installing required packages**
 
@@ -10,140 +10,140 @@
 
 
 
-sudo apt install -y python3-behave
+<sub>sudo apt install -y python3-behave</sub>
 
-sudo apt install -y php-codesniffer
+<sub>sudo apt install -y php-codesniffer</sub>
 
-sudo apt install -y phpunit
+<sub>sudo apt install -y phpunit</sub>
 
-sudo apt install -y pylint
+<sub>sudo apt install -y pylint</sub>
 
-sudo python38 -m pip install -y python-dotenv
+<sub>sudo python38 -m pip install -y python-dotenv</sub>
 
-sudo apt install -y osm2pgsql
+<sub>sudo apt install -y osm2pgsql</sub>
 
-sudo apt  install -y cmake
+<sub>sudo apt  install -y cmake</sub>
 
-sudo snap install -y cmake 
+<sub>sudo snap install -y cmake </sub>
 
-sudo apt install -y python3-pip
+<sub>sudo apt install -y python3-pip</sub>
 
-sudo apt install -y acl
+<sub>sudo apt install -y acl</sub>
 
-sudo pip install -U pytest
+<sub>sudo pip install -U pytest</sub>
 
-sudo apt install -y php-cgi unzip recode
+<sub>sudo apt install -y php-cgi unzip recode</sub>
 
-sudo apt install -y apache2 libapache2-mod-php
+<sub>sudo apt install -y apache2 libapache2-mod-php</sub>
 
-sudo apt install -y net-tools
+<sub>sudo apt install -y net-tools</sub>
 
-sudo apt-get install -y osmctools
+<sub>sudo apt-get install -y osmctools</sub>
 
-sudo apt install -y php-cgi
+<sub>sudo apt install -y php-cgi</sub>
 
-sudo apt install -y build-essential cmake g++ libboost-dev libboost-system-dev \
-                    libboost-filesystem-dev libexpat1-dev zlib1g-dev \
-                    libbz2-dev libpq-dev liblua5.3-dev lua5.3 \
-                    postgresql-server-dev-14 postgresql-14-postgis-3 \
-                    postgresql-contrib-14 postgresql-14-postgis-3-scripts \
-                    php-cli php-pgsql php-intl libicu-dev python3-dotenv \
-                    python3-psycopg2 python3-psutil python3-jinja2 \
-                    python3-icu python3-datrie
+<sub>sudo apt install -y build-essential cmake g++ libboost-dev libboost-system-dev \
+                        libboost-filesystem-dev libexpat1-dev zlib1g-dev \
+                        libbz2-dev libpq-dev liblua5.3-dev lua5.3 \
+                        postgresql-server-dev-14 postgresql-14-postgis-3 \
+                        postgresql-contrib-14 postgresql-14-postgis-3-scripts \
+                        php-cli php-pgsql php-intl libicu-dev python3-dotenv \
+                        python3-psycopg2 python3-psutil python3-jinja2 \
+                        python3-icu python3-datrie</sub>
 
 
 
 **#run below command for Creating a new system user named "nominatim" with a home directory of "/srv/nominatim"**
 
-sudo useradd -d /srv/nominatim -s /bin/bash -m nominatim
+<sub>sudo useradd -d /srv/nominatim -s /bin/bash -m nominatim</sub>
 
 
 
 **#run below command for Setting environment variables for the username and home directory of the nominatim user.**
 
-export USERNAME=nominatim
+<sub>export USERNAME=nominatim</sub>
 
-export USERHOME=/srv/nominatim
+<sub>export USERHOME=/srv/nominatim</sub>
 
 
 
 **#open the sudoers for configuration**
 
-visudo
+<sub>visudo</sub>
 
 
 
 **#Add these entries to the sudoers for granting various privileges**
 
-%userName ALL=(ALL) ALL
+<sub>%userName ALL=(ALL) ALL</sub>
 
-%nominatim ALL=(ALL)  ALL
+<sub>%nominatim ALL=(ALL)  ALL</sub>
 
-%postgres ALL=(ALL)  ALL
+<sub>%postgres ALL=(ALL)  ALL</sub>
 
 
 
 **#copy Paste the code from here**
 
-sudo chmod a+x $USERHOME
+<sub>sudo chmod a+x $USERHOME</sub>
 
-sudo setfacl -R -m u:postgres:rwx /srv/nominatim/
+<sub>sudo setfacl -R -m u:postgres:rwx /srv/nominatim/</sub>
 
-sudo systemctl restart postgresql
+<sub>sudo systemctl restart postgresql</sub>
 
-sudo -u postgres -i
+<sub>sudo -u postgres -i</sub>
 
-sudo -u postgres createuser -s $USERNAME
+<sub>sudo -u postgres createuser -s $USERNAME</sub>
 
-sudo -u postgres createuser www-data
+<sub>sudo -u postgres createuser www-data</sub>
 
-su username
+<sub>su username</sub>
 
-sudo -i
+<sub>sudo -i</sub>
 
-export USERNAME=nominatim
+<sub>export USERNAME=nominatim</sub>
 
-export USERHOME=/srv/nominatim
+<sub>export USERHOME=/srv/nominatim</sub>
 
-cd $USERHOME
+<sub>cd $USERHOME</sub>
 
-wget https://nominatim.org/release/Nominatim-4.2.0.tar.bz2
+<sub>wget https://nominatim.org/release/Nominatim-4.2.0.tar.bz2</sub>
 
-tar xf Nominatim-4.2.0.tar.bz2
-
-
-mkdir build
-
-cd build
-
-sudo cmake /srv/nominatim/Nominatim-4.2.0
-
-sudo make
-
-sudo make install
-
-cd ..
-
-mkdir /srv/nominatim/nominatim-project
-
-mkdir /srv/nominatim/nominatim-project/website
+<sub>tar xf Nominatim-4.2.0.tar.bz2</sub>
 
 
-sudo setfacl -R -m u:nominatim:rwx /srv/nominatim/
+<sub>mkdir build</sub>
 
-sudo setfacl -R -m u:postgres:rwx /srv/nominatim/
+<sub>cd build</sub>
 
-mkdir nominatim-planet
+<sub>sudo cmake /srv/nominatim/Nominatim-4.2.0</sub>
 
-cd /srv/nominatim/nominatim-planet
+<sub>sudo make</sub>
 
-export PROJECT_DIR=/srv/nominatim/nominatim-planet
+<sub>sudo make install</sub>
 
-cd $PROJECT_DIR
+<sub>cd ..</sub>
 
-wget https://www.nominatim.org/data/wikimedia-importance.sql.gz
+<sub>mkdir /srv/nominatim/nominatim-project</sub>
 
-wget https://download.geofabrik.de/asia/india-latest.osm.pbf
+<sub>mkdir /srv/nominatim/nominatim-project/website</sub>
+
+
+<sub>sudo setfacl -R -m u:nominatim:rwx /srv/nominatim/</sub>
+
+<sub>sudo setfacl -R -m u:postgres:rwx /srv/nominatim/</sub>
+
+<sub>mkdir nominatim-planet</sub>
+
+<sub>cd /srv/nominatim/nominatim-planet</sub>
+
+<sub>export PROJECT_DIR=/srv/nominatim/nominatim-planet</sub>
+
+<sub>cd $PROJECT_DIR</sub>
+
+<sub>wget https://www.nominatim.org/data/wikimedia-importance.sql.gz</sub>
+
+<sub>wget https://download.geofabrik.de/asia/india-latest.osm.pbf</sub>
 
 **#upto here**
 
@@ -151,88 +151,88 @@ wget https://download.geofabrik.de/asia/india-latest.osm.pbf
 
 **#open postgres user**
 
-sudo -u postgres -i
+<sub>sudo -u postgres -i</sub>
 
 
 **#open postgresql.conf file and make some updates**
 
-nano /etc/postgresql/14/main/postgresql.conf
+<sub>nano /etc/postgresql/14/main/postgresql.conf</sub>
 
 
 **#make these changes in the file**
 
-listen_addresses = 'localhost'
+<sub>listen_addresses = 'localhost'</sub>
 
-shared_buffers = 2GB
+<sub>shared_buffers = 2GB</sub>
 
-maintenance_work_mem = 10GB
+<sub>maintenance_work_mem = 10GB</sub>
 
-autovacuum_work_mem = 2GB
+<sub>autovacuum_work_mem = 2GB</sub>
 
-work_mem = 50MB
+<sub>work_mem = 50MB</sub>
 
-effective_cache_size = 24GB
+<sub>effective_cache_size = 24GB</sub>
 
-synchronous_commit = off
+<sub>synchronous_commit = off</sub>
 
-max_wal_size = 1GB
+<sub>max_wal_size = 1GB</sub>
 
-checkpoint_timeout = 10min
+<sub>checkpoint_timeout = 10min
 
-checkpoint_completion_target = 0.9
+  <sub>checkpoint_completion_target = 0.9</sub>
 
 
 
 
 **#copy paste below command from here**
 
-su userName
+  <sub>su userName</sub>
 
-sudo -i
+  <sub>sudo -i</sub>
 
-sudo systemctl restart postgresql
+  <sub>sudo systemctl restart postgresql</sub>
 
-sudo -u postgres -i
+  <sub>sudo -u postgres -i</sub>
 
-cd
+<sub>cd
 
-nominatim import --osm-file /srv/nominatim/nominatim-planet/india-latest.osm.pbf 2>&1 | tee setup.log
+<sub>nominatim import --osm-file /srv/nominatim/nominatim-planet/india-latest.osm.pbf 2>&1 | tee setup.log</sub>
 
-nominatim admin --check-database
+  <sub>nominatim admin --check-database</sub>
 
-nominatim import --continue indexing
+  <sub>nominatim import --continue indexing</sub>
 
-nominatim admin --check-database
+  <sub>nominatim admin --check-database</sub>
 
-cd /srv/nominatim/nominatim-planet/
+  <sub>cd /srv/nominatim/nominatim-planet/</sub>
 
-nominatim refresh --wiki-data --importance 2>&1 | tee setup.log
+  <sub>nominatim refresh --wiki-data --importance 2>&1 | tee setup.log</sub>
 
-nominatim admin --check-database
+  <sub>nominatim admin --check-database</sub>
 
-cp -r /var/lib/postgresql/website/ /srv/nominatim/nominatim-project/
+  <sub>cp -r /var/lib/postgresql/website/ /srv/nominatim/nominatim-project/</sub>
 
-su userName
+  <sub>su userName</sub>
 
-sudo -i
+  <sub>sudo -i</sub>
 
-sudo tee /etc/apache2/conf-available/nominatim.conf << EOFAPACHECONF
+  <sub>sudo tee /etc/apache2/conf-available/nominatim.conf << EOFAPACHECONF</sub>
 
-<Directory "/srv/nominatim/nominatim-project/website">
+<sub><Directory "/srv/nominatim/nominatim-project/website"></sub>
 
-  Options FollowSymLinks MultiViews
+  <sub>Options FollowSymLinks MultiViews</sub>
   
-  AddType text/html   .php
+  <sub>AddType text/html   .php</sub>
   
-  DirectoryIndex search.php
+ <sub> DirectoryIndex search.php</sub>
   
-  Require all granted
+ <sub> Require all granted</sub>
   
-</Directory>
+<sub></Directory></sub>
 
-Alias /nominatim /srv/nominatim/nominatim-project/website
+<sub>Alias /nominatim /srv/nominatim/nominatim-project/website</sub>
 
-EOFAPACHECONF
+ <sub> EOFAPACHECONF</sub>
 
 **#upto here**
 
@@ -241,19 +241,19 @@ EOFAPACHECONF
 
 **#open postgres user**
 
-sudo -u postgres -i
+  <sub>sudo -u postgres -i</sub>
 
 **#run these following command in postgres user**
 
-a2enconf nominatim
+  <sub>a2enconf nominatim</sub>
 
-systemctl restart apache2
+  <sub>systemctl restart apache2</sub>
 
-systemctl status apache2
+  <sub>systemctl status apache2</sub>
 
-systemctl restart postgresql
+  <sub>systemctl restart postgresql</sub>
 
-nominatim serve
+  <sub>nominatim serve</sub>
 
 
 **#open browser and check the server running properly** 
